@@ -154,7 +154,7 @@ function TemplateForm() {
         <div className="app-container">
             <div className="card">
                 <button onClick={() => navigate('/')} className="back-btn">
-                    ← Back to Templates
+                    Back
                 </button>
 
                 <h2 className="card-title">Template {template} Configuration</h2>
@@ -223,7 +223,7 @@ function TemplateForm() {
                             )}
 
                             <button onClick={handlePreviewCoordinates} className="preview-btn">
-                                👁️ Preview Template {template} with "જીવરાજભાઈ અમરશીભાઈ"
+                                Preview Template {template}
                             </button>
                         </div>
                     )}
