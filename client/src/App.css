@@ -29,7 +29,7 @@ body {
 }
 
 #root {
-  max-width: 900px;
+  max-width: 1400px; /* Increased to accommodate wider grid */
   padding: 2rem 1rem;
 }
 
@@ -65,7 +65,7 @@ body {
   gap: 1.5rem;
   margin-bottom: 3rem;
   width: 100%;
-  max-width: 1200px; /* Adjusted max-width for wider cards */
+  max-width: 1400px; /* Adjusted max-width for wider cards */
 }
 
 .template-card {
