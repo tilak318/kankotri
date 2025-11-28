@@ -29,16 +29,21 @@ body {
 }
 
 #root {
-  max-width: 1400px; /* Increased to accommodate wider grid */
-  padding: 0; /* Remove padding as it will be handled by body */
-  min-height: 100vh; /* Ensure it takes full vertical space */
+  max-width: 1400px;
+  /* Increased to accommodate wider grid */
+  padding: 0;
+  /* Remove padding as it will be handled by body */
+  min-height: 100vh;
+  /* Ensure it takes full vertical space */
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center content horizontally */
+  align-items: center;
+  /* Center content horizontally */
 }
 
 body {
-  padding-top: 5rem; /* Add padding to prevent content from being hidden by fixed header */
+  padding-top: 5rem;
+  /* Add padding to prevent content from being hidden by fixed header */
 }
 
 .app-container {
@@ -46,7 +51,8 @@ body {
   flex-direction: column;
   align-items: center;
   min-height: auto;
-  padding-top: 0; /* Remove padding-top from app-container */
+  padding-top: 0;
+  /* Remove padding-top from app-container */
 }
 
 .app-header {
@@ -55,13 +61,17 @@ body {
   background-color: var(--bg-dark);
   border-bottom: 1px solid var(--border);
   display: flex;
-  justify-content: center; /* Center the Home link */
+  justify-content: center;
+  /* Center the Home link */
   align-items: center;
-  margin-bottom: 0; /* Remove margin-bottom as it's fixed */
-  position: fixed; /* Make the header fixed */
+  margin-bottom: 0;
+  /* Remove margin-bottom as it's fixed */
+  position: fixed;
+  /* Make the header fixed */
   top: 0;
   left: 0;
-  z-index: 1000; /* Ensure it stays on top */
+  z-index: 1000;
+  /* Ensure it stays on top */
 }
 
 .home-link {
@@ -80,9 +90,12 @@ body {
   display: flex;
   align-items: center;
   width: 100%;
-  justify-content: center; /* Center content horizontally */
-  margin-bottom: 2rem; /* Add space below the header */
-  padding: 0 1rem; /* Add horizontal padding */
+  justify-content: center;
+  /* Center content horizontally */
+  margin-bottom: 2rem;
+  /* Add space below the header */
+  padding: 0 1rem;
+  /* Add horizontal padding */
 }
 
 .back-btn {
@@ -94,7 +107,8 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
   font-weight: 500;
-  white-space: nowrap; /* Prevent text wrapping */
+  white-space: nowrap;
+  /* Prevent text wrapping */
 }
 
 .back-btn:hover {
@@ -105,7 +119,8 @@ body {
 .app-container h1 {
   font-size: 2.5rem;
   font-weight: 700;
-  color: white; /* Set color to white */
+  color: white;
+  /* Set color to white */
   margin-bottom: 2rem;
   text-align: center;
 }
@@ -120,11 +135,13 @@ body {
 /* Template Grid */
 .template-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Three items per row */
+  grid-template-columns: repeat(3, 1fr);
+  /* Three items per row */
   gap: 1.5rem;
   margin-bottom: 3rem;
   width: 100%;
-  max-width: 1400px; /* Adjusted max-width for wider cards */
+  max-width: 1400px;
+  /* Adjusted max-width for wider cards */
 }
 
 .template-card {
@@ -186,7 +203,8 @@ body {
 }
 
 .template-info {
-  display: none; /* Removed as per user request */
+  display: none;
+  /* Removed as per user request */
 }
 
 .template-gujarati-note {
@@ -199,7 +217,8 @@ body {
   margin-top: 1rem;
   display: flex;
   justify-content: center;
-  gap: 0.5rem; /* Space between items, reduced for single line */
+  gap: 0.5rem;
+  /* Space between items, reduced for single line */
 }
 
 .template-gujarati-note p {
@@ -211,12 +230,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem; /* Gap between key and value */
+  gap: 0.5rem;
+  /* Gap between key and value */
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 0.5rem 0.75rem;
-  margin: 0.25rem; /* Space between note items */
-  flex: 0 0 auto; /* Prevent wrapping */
+  margin: 0.25rem;
+  /* Space between note items */
+  flex: 0 0 auto;
+  /* Prevent wrapping */
 }
 
 .note-name {
@@ -225,15 +247,18 @@ body {
 }
 
 .sarvo-red {
-  color: var(--success); /* Green color for SARVO (swapped) */
+  color: var(--success);
+  /* Green color for SARVO (swapped) */
 }
 
 .sajode-green {
-  color: var(--error); /* Red color for SAJODE (swapped) */
+  color: var(--error);
+  /* Red color for SAJODE (swapped) */
 }
 
 .card-title {
-  color: white; /* Set title color to white */
+  color: white;
+  /* Set title color to white */
   font-size: 2.2rem;
   font-weight: 700;
   margin-bottom: 2rem;
@@ -254,6 +279,35 @@ body {
   align-items: center;
 }
 
+/* Two Column Layout */
+.two-column-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1400px;
+  margin-top: 2rem;
+}
+
+.form-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.section-title {
+  color: var(--primary-light);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+
 .coordinate-setup h3:hover {
   background: rgba(99, 102, 241, 0.1);
 }
@@ -262,7 +316,8 @@ body {
   background: var(--bg-dark);
   padding: 1.5rem;
   border-radius: 12px;
-  margin-top: 0; /* Removed margin-top */
+  margin-top: 0;
+  /* Removed margin-top */
   border: 1px solid var(--border);
 }
 
@@ -305,7 +360,8 @@ body {
 
 .preview-btn-container {
   display: flex;
-  justify-content: flex-end; /* Align to the right */
+  justify-content: flex-end;
+  /* Align to the right */
   width: 100%;
   margin-top: 1rem;
 }
@@ -321,7 +377,8 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-  width: auto; /* Allow button to size content */
+  width: auto;
+  /* Allow button to size content */
 }
 
 .preview-btn:hover {
@@ -334,7 +391,8 @@ body {
 }
 
 .file-input-wrapper {
-  margin-bottom: 0; /* Removed margin-bottom */
+  margin-bottom: 0;
+  /* Removed margin-bottom */
   display: flex;
   justify-content: center;
 }
@@ -350,13 +408,17 @@ body {
   transition: all 0.3s ease;
   font-size: 0.95rem;
   display: flex;
-  flex-direction: column; /* Stack button and text vertically */
-  align-items: center; /* Center items horizontally within the input */
-  gap: 0.5rem; /* Space between button and text */
+  flex-direction: column;
+  /* Stack button and text vertically */
+  align-items: center;
+  /* Center items horizontally within the input */
+  gap: 0.5rem;
+  /* Space between button and text */
 }
 
 .file-input input[type="file"] {
-  display: none; /* Hide the native file input */
+  display: none;
+  /* Hide the native file input */
 }
 
 .file-input span {
@@ -368,7 +430,8 @@ body {
   cursor: pointer;
   font-weight: 600;
   transition: background 0.2s ease;
-  white-space: nowrap; /* Prevent text from wrapping */
+  white-space: nowrap;
+  /* Prevent text from wrapping */
 }
 
 .file-input span:hover {
@@ -389,7 +452,8 @@ body {
 }
 
 .preview-section {
-  margin: 0; /* Removed margin */
+  margin: 0;
+  /* Removed margin */
 }
 
 .preview-section h3 {
@@ -457,15 +521,18 @@ body {
 }
 
 .actions {
-  margin-top: 0; /* Removed margin-top */
+  margin-top: 0;
+  /* Removed margin-top */
   display: flex;
-  justify-content: flex-end; /* Align to the right */
+  justify-content: flex-end;
+  /* Align to the right */
   width: 100%;
 }
 
 .form-actions-container {
   display: flex;
-  justify-content: flex-end; /* Align items to the right */
+  justify-content: flex-end;
+  /* Align items to the right */
   align-items: center;
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -485,7 +552,8 @@ body {
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
-  width: auto; /* Allow button to size content */
+  width: auto;
+  /* Allow button to size content */
   box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
 }
 
@@ -546,9 +614,11 @@ body {
   }
 
   .template-grid {
-    grid-template-columns: repeat(2, 1fr); /* Two columns on smaller screens */
+    grid-template-columns: repeat(2, 1fr);
+    /* Two columns on smaller screens */
     gap: 1rem;
-    max-width: 600px; /* Adjust max-width for two columns */
+    max-width: 600px;
+    /* Adjust max-width for two columns */
   }
 
   .card {
@@ -569,7 +639,8 @@ body {
   }
 
   .header-container {
-    flex-direction: column; /* Stack items vertically on smaller screens */
+    flex-direction: column;
+    /* Stack items vertically on smaller screens */
     align-items: flex-start;
     gap: 1rem;
     padding: 0;
@@ -584,18 +655,27 @@ body {
   }
 
   .form-actions-container {
-    flex-direction: column; /* Stack buttons vertically on smaller screens */
+    flex-direction: column;
+    /* Stack buttons vertically on smaller screens */
     align-items: stretch;
   }
 
   .preview-btn,
   .primary-btn {
-    width: 100%; /* Full width for buttons on small screens */
+    width: 100%;
+    /* Full width for buttons on small screens */
+  }
+
+  /* Stack two-column layout vertically on mobile */
+  .two-column-layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }
 
 @media (max-width: 480px) {
   .template-grid {
-    grid-template-columns: 1fr; /* Single column on very small screens */
+    grid-template-columns: 1fr;
+    /* Single column on very small screens */
   }
 }

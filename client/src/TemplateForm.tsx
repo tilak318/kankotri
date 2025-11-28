@@ -152,85 +152,89 @@ function TemplateForm() {
 
     return (
         <div className="app-container">
-            <div className="card">
-                <h2 className="card-title">Template {template} Configuration</h2>
+            <h2 className="card-title">Template {template} Configuration</h2>
 
-                <div className="form-main-content">
-                    {/* Coordinate Setup Section */}
-                    <div className="coordinate-setup">
-                        <div className="coordinate-inputs">
-                                {/* Page 1 - Always shown */}
-                                <div className="coord-row">
-                                    <label>Page 1 (after "શ્રી"):</label>
-                                    <input
-                                        type="number"
-                                        placeholder="X"
-                                        value={coordinates.page1.x}
-                                        onChange={(e) => setCoordinates({ ...coordinates, page1: { ...coordinates.page1, x: Number(e.target.value) } })}
-                                    />
-                                    <input
-                                        type="number"
-                                        placeholder="Y"
-                                        value={coordinates.page1.y}
-                                        onChange={(e) => setCoordinates({ ...coordinates, page1: { ...coordinates.page1, y: Number(e.target.value) } })}
-                                    />
-                                </div>
+            <div className="two-column-layout">
+                {/* Left Column - Coordinate Setup */}
+                <div className="form-card">
+                    <h3 className="section-title">Coordinate Setup</h3>
+                    <div className="coordinate-inputs">
+                        {/* Page 1 - Always shown */}
+                        <div className="coord-row">
+                            <label>Page 1 (after "શ્રી"):</label>
+                            <input
+                                type="number"
+                                placeholder="X"
+                                value={coordinates.page1.x}
+                                onChange={(e) => setCoordinates({ ...coordinates, page1: { ...coordinates.page1, x: Number(e.target.value) } })}
+                            />
+                            <input
+                                type="number"
+                                placeholder="Y"
+                                value={coordinates.page1.y}
+                                onChange={(e) => setCoordinates({ ...coordinates, page1: { ...coordinates.page1, y: Number(e.target.value) } })}
+                            />
+                        </div>
 
-                                {/* Page 4 - Show for A, B, C, D, E, F, G */}
-                                {template && ['A', 'B', 'C', 'D', 'E', 'F', 'G'].includes(template) && (
-                                    <div className="coord-row">
-                                        <label>Page 4 (after "એહી સ્વજનશ્રી"):</label>
-                                        <input
-                                            type="number"
-                                            placeholder="X"
-                                            value={coordinates.page4.x}
-                                            onChange={(e) => setCoordinates({ ...coordinates, page4: { ...coordinates.page4, x: Number(e.target.value) } })}
-                                        />
-                                        <input
-                                            type="number"
-                                            placeholder="Y"
-                                            value={coordinates.page4.y}
-                                            onChange={(e) => setCoordinates({ ...coordinates, page4: { ...coordinates.page4, y: Number(e.target.value) } })}
-                                        />
-                                    </div>
-                                )}
+                        {/* Page 4 - Show for A, B, C, D, E, F, G */}
+                        {template && ['A', 'B', 'C', 'D', 'E', 'F', 'G'].includes(template) && (
+                            <div className="coord-row">
+                                <label>Page 4 (after "એહી સ્વજનશ્રી"):</label>
+                                <input
+                                    type="number"
+                                    placeholder="X"
+                                    value={coordinates.page4.x}
+                                    onChange={(e) => setCoordinates({ ...coordinates, page4: { ...coordinates.page4, x: Number(e.target.value) } })}
+                                />
+                                <input
+                                    type="number"
+                                    placeholder="Y"
+                                    value={coordinates.page4.y}
+                                    onChange={(e) => setCoordinates({ ...coordinates, page4: { ...coordinates.page4, y: Number(e.target.value) } })}
+                                />
+                            </div>
+                        )}
 
-                                {/* Page 5 - Show only for A, B, C */}
-                                {template && ['A', 'B', 'C'].includes(template) && (
-                                    <div className="coord-row">
-                                        <label>Page 5 (after "એહી સ્વજનશ્રી"):</label>
-                                        <input
-                                            type="number"
-                                            placeholder="X"
-                                            value={coordinates.page5.x}
-                                            onChange={(e) => setCoordinates({ ...coordinates, page5: { ...coordinates.page5, x: Number(e.target.value) } })}
-                                        />
-                                        <input
-                                            type="number"
-                                            placeholder="Y"
-                                            value={coordinates.page5.y}
-                                            onChange={(e) => setCoordinates({ ...coordinates, page5: { ...coordinates.page5, y: Number(e.target.value) } })}
-                                        />
-                                    </div>
-                                )}
+                        {/* Page 5 - Show only for A, B, C */}
+                        {template && ['A', 'B', 'C'].includes(template) && (
+                            <div className="coord-row">
+                                <label>Page 5 (after "એહી સ્વજનશ્રી"):</label>
+                                <input
+                                    type="number"
+                                    placeholder="X"
+                                    value={coordinates.page5.x}
+                                    onChange={(e) => setCoordinates({ ...coordinates, page5: { ...coordinates.page5, x: Number(e.target.value) } })}
+                                />
+                                <input
+                                    type="number"
+                                    placeholder="Y"
+                                    value={coordinates.page5.y}
+                                    onChange={(e) => setCoordinates({ ...coordinates, page5: { ...coordinates.page5, y: Number(e.target.value) } })}
+                                />
+                            </div>
+                        )}
 
-                                <div className="preview-btn-container">
-                                    <button onClick={handlePreviewCoordinates} className="preview-btn">
-                                        Preview Template {template}
-                                    </button>
-                                </div>
+                        <div className="preview-btn-container">
+                            <button onClick={handlePreviewCoordinates} className="preview-btn">
+                                Preview Template {template}
+                            </button>
                         </div>
                     </div>
-
-                {/* File Upload Section */}
-                <div className="file-input-wrapper">
-                    <input
-                        type="file"
-                        accept=".xlsx, .xls"
-                        onChange={handleFileChange}
-                        className="file-input"
-                    />
                 </div>
+
+                {/* Right Column - File Upload & Guest Preview */}
+                <div className="form-card">
+                    <h3 className="section-title">Guest List</h3>
+
+                    {/* File Upload Section */}
+                    <div className="file-input-wrapper">
+                        <input
+                            type="file"
+                            accept=".xlsx, .xls"
+                            onChange={handleFileChange}
+                            className="file-input"
+                        />
+                    </div>
 
                     {loading && <p className="status-message">Loading Excel file...</p>}
 
@@ -267,9 +271,10 @@ function TemplateForm() {
                             {generating ? `Generating... (${progress.current}/${progress.total})` : `Generate with Template ${template}`}
                         </button>
                     </div>
-                </div> {/* End of form-main-content */}
-                {message && <p className={`status-message ${message.includes('Error') ? 'error' : 'success'}`}>{message}</p>}
+                </div>
             </div>
+
+            {message && <p className={`status-message ${message.includes('Error') ? 'error' : 'success'}`}>{message}</p>}
         </div>
     );
 }
