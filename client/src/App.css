@@ -30,7 +30,15 @@ body {
 
 #root {
   max-width: 1400px; /* Increased to accommodate wider grid */
-  padding: 2rem 1rem;
+  padding: 0; /* Remove padding as it will be handled by body */
+  min-height: 100vh; /* Ensure it takes full vertical space */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+}
+
+body {
+  padding-top: 5rem; /* Add padding to prevent content from being hidden by fixed header */
 }
 
 .app-container {
@@ -38,14 +46,41 @@ body {
   flex-direction: column;
   align-items: center;
   min-height: auto;
-  padding-top: 1rem; /* Control space from the top, reduced from 2rem */
+  padding-top: 0; /* Remove padding-top from app-container */
+}
+
+.app-header {
+  width: 100%;
+  padding: 1rem 2rem;
+  background-color: var(--bg-dark);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: center; /* Center the Home link */
+  align-items: center;
+  margin-bottom: 0; /* Remove margin-bottom as it's fixed */
+  position: fixed; /* Make the header fixed */
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Ensure it stays on top */
+}
+
+.home-link {
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.home-link:hover {
+  color: var(--primary-light);
 }
 
 .header-container {
   display: flex;
   align-items: center;
   width: 100%;
-  justify-content: space-between; /* Space out items */
+  justify-content: center; /* Center content horizontally */
   margin-bottom: 2rem; /* Add space below the header */
   padding: 0 1rem; /* Add horizontal padding */
 }

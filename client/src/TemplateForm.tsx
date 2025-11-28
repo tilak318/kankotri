@@ -152,13 +152,7 @@ function TemplateForm() {
     return (
         <div className="app-container">
             <div className="card">
-                <div className="header-container">
-                    <button onClick={() => navigate('/')} className="back-btn">
-                        Back
-                    </button>
-
-                    <h2 className="card-title">Template {template} Configuration</h2>
-                </div>
+                <h2 className="card-title">Template {template} Configuration</h2>
 
                 {/* Coordinate Setup Section */}
                 <div className="coordinate-setup">
