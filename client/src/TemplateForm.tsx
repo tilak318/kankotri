@@ -222,8 +222,6 @@ function TemplateForm() {
                         </div>
                     </div>
 
-                    <hr />
-
                 {/* File Upload Section */}
                 <div className="file-input-wrapper">
                     <input
