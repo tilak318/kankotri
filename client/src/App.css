@@ -41,6 +41,32 @@ body {
   padding-top: 1rem; /* Control space from the top, reduced from 2rem */
 }
 
+.header-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between; /* Space out items */
+  margin-bottom: 2rem; /* Add space below the header */
+  padding: 0 1rem; /* Add horizontal padding */
+}
+
+.back-btn {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+.back-btn:hover {
+  border-color: var(--primary);
+  background: rgba(99, 102, 241, 0.1);
+}
+
 .app-container h1 {
   font-size: 2.5rem;
   font-weight: 700;
@@ -175,8 +201,9 @@ body {
   color: white; /* Set title color to white */
   font-size: 2.2rem;
   font-weight: 700;
-  margin-bottom: 2rem;
+  margin-bottom: 0; /* Removed margin-bottom */
   text-align: center;
+  flex-grow: 1; /* Allow title to take remaining space */
 }
 
 .coordinate-setup h3:hover {
@@ -457,10 +484,19 @@ body {
     width: 100%;
   }
 
+  .header-container {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0;
+  }
+
+  .card-title {
+    font-size: 1.8rem;
+  }
+
   .back-btn {
-    position: static; /* Revert to static for smaller screens */
-    margin-bottom: 1rem;
-    width: auto;
+    margin-bottom: 0.5rem;
   }
 }
 
