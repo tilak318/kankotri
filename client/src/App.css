@@ -61,11 +61,11 @@ body {
 /* Template Grid */
 .template-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr); /* Three items per row */
   gap: 1.5rem;
   margin-bottom: 3rem;
   width: 100%;
-  max-width: 1200px; /* Increased max-width */
+  max-width: 900px; /* Adjusted max-width for 3 columns */
 }
 
 .template-card {
@@ -78,7 +78,7 @@ body {
   text-align: center;
   position: relative;
   overflow: hidden;
-  width: 100%; /* Ensure cards take full width in their grid column */
+  width: 100%;
 }
 
 .template-card::before {
@@ -138,14 +138,17 @@ body {
   z-index: 1;
   user-select: none;
   margin-top: 1rem;
+  display: flex; /* Make it a flex container */
+  flex-wrap: wrap; /* Allow items to wrap */
+  justify-content: center; /* Center items horizontally */
+  gap: 1rem; /* Space between items */
 }
 
 .template-gujarati-note p {
-  margin-bottom: 0.2rem;
-}
-
-.template-gujarati-note p:last-child {
   margin-bottom: 0;
+  flex: 1 1 calc(50% - 1rem); /* Two items per row with gap */
+  max-width: calc(50% - 1rem);
+  text-align: center;
 }
 
 .coordinate-setup h3:hover {
@@ -401,8 +404,9 @@ body {
   }
 
   .template-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* Two columns on smaller screens */
     gap: 1rem;
+    max-width: 600px; /* Adjust max-width for two columns */
   }
 
   .card {
@@ -425,6 +429,10 @@ body {
 
 @media (max-width: 480px) {
   .template-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Single column on very small screens */
+  }
+  .template-gujarati-note p {
+    flex: 1 1 100%; /* Single item per row on very small screens */
+    max-width: 100%;
   }
 }
