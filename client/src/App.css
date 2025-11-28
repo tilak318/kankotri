@@ -251,6 +251,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  align-items: center;
 }
 
 .coordinate-setup h3:hover {
@@ -335,7 +336,6 @@ body {
 .file-input-wrapper {
   margin-bottom: 0; /* Removed margin-bottom */
   display: flex;
-  justify-content: center; /* Center the file input */
 }
 
 .file-input {
@@ -343,7 +343,6 @@ body {
   padding: 16px;
   border-radius: 12px;
   width: 100%;
-  max-width: 400px; /* Optional: limit width of file input */
   background: var(--bg-input);
   color: var(--text-primary);
   cursor: pointer;
@@ -369,6 +368,8 @@ body {
   cursor: pointer;
   font-weight: 600;
   margin-right: 0; /* Remove margin-right to allow stacking */
+  display: block;
+  margin-bottom: 0.5rem; /* Add space below button */
   transition: background 0.2s ease;
 }
 
