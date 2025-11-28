@@ -160,7 +160,7 @@ function App() {
   return (
     <div className="app-container">
       <h1>Guest Name PDF Generator</h1>
-      <p>Select a template card below to configure and generate personalized PDFs</p>
+      
 
       {/* Template Cards Grid */}
       <div className="template-grid">
