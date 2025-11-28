@@ -1,0 +1,119 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+}
+
+.card {
+  padding: 2em;
+  background-color: #242424;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.file-input-wrapper {
+  margin-bottom: 20px;
+}
+
+.file-input {
+  border: 1px solid #555;
+  padding: 10px;
+  border-radius: 8px;
+  width: 100%;
+  background-color: #333;
+  color: white;
+}
+
+.primary-btn {
+  background-color: #646cff;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.primary-btn:hover {
+  background-color: #535bf2;
+}
+
+.primary-btn:disabled {
+  background-color: #444;
+  cursor: not-allowed;
+}
+
+.status-message {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.status-message.success {
+  color: #4caf50;
+}
+
+.status-message.error {
+  color: #f44336;
+}
+
+.preview-section {
+  margin: 20px 0;
+}
+
+.preview-section h3 {
+  color: #646cff;
+  margin-bottom: 15px;
+}
+
+.table-wrapper {
+  max-height: 400px;
+  overflow-y: auto;
+  border-radius: 8px;
+  border: 1px solid #444;
+}
+
+.preview-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #1a1a1a;
+}
+
+.preview-table thead {
+  position: sticky;
+  top: 0;
+  background-color: #2a2a2a;
+  z-index: 10;
+}
+
+.preview-table th,
+.preview-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #333;
+}
+
+.preview-table th {
+  color: #646cff;
+  font-weight: bold;
+}
+
+.preview-table tr:hover {
+  background-color: #2a2a2a;
+}
+
+.actions {
+  margin-top: 20px;
+}
