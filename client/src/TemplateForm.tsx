@@ -154,118 +154,121 @@ function TemplateForm() {
             <div className="card">
                 <h2 className="card-title">Template {template} Configuration</h2>
 
-                {/* Coordinate Setup Section */}
-                <div className="coordinate-setup">
-                    <div className="coordinate-inputs">
-                            {/* Page 1 - Always shown */}
-                            <div className="coord-row">
-                                <label>Page 1 (after "શ્રી"):</label>
-                                <input
-                                    type="number"
-                                    placeholder="X"
-                                    value={coordinates.page1.x}
-                                    onChange={(e) => setCoordinates({ ...coordinates, page1: { ...coordinates.page1, x: Number(e.target.value) } })}
-                                />
-                                <input
-                                    type="number"
-                                    placeholder="Y"
-                                    value={coordinates.page1.y}
-                                    onChange={(e) => setCoordinates({ ...coordinates, page1: { ...coordinates.page1, y: Number(e.target.value) } })}
-                                />
-                            </div>
-
-                            {/* Page 4 - Show for A, B, C, D, E, F, G */}
-                            {template && ['A', 'B', 'C', 'D', 'E', 'F', 'G'].includes(template) && (
+                <div className="form-main-content">
+                    {/* Coordinate Setup Section */}
+                    <div className="coordinate-setup">
+                        <div className="coordinate-inputs">
+                                {/* Page 1 - Always shown */}
                                 <div className="coord-row">
-                                    <label>Page 4 (after "એહી સ્વજનશ્રી"):</label>
+                                    <label>Page 1 (after "શ્રી"):</label>
                                     <input
                                         type="number"
                                         placeholder="X"
-                                        value={coordinates.page4.x}
-                                        onChange={(e) => setCoordinates({ ...coordinates, page4: { ...coordinates.page4, x: Number(e.target.value) } })}
+                                        value={coordinates.page1.x}
+                                        onChange={(e) => setCoordinates({ ...coordinates, page1: { ...coordinates.page1, x: Number(e.target.value) } })}
                                     />
                                     <input
                                         type="number"
                                         placeholder="Y"
-                                        value={coordinates.page4.y}
-                                        onChange={(e) => setCoordinates({ ...coordinates, page4: { ...coordinates.page4, y: Number(e.target.value) } })}
+                                        value={coordinates.page1.y}
+                                        onChange={(e) => setCoordinates({ ...coordinates, page1: { ...coordinates.page1, y: Number(e.target.value) } })}
                                     />
                                 </div>
-                            )}
 
-                            {/* Page 5 - Show only for A, B, C */}
-                            {template && ['A', 'B', 'C'].includes(template) && (
-                                <div className="coord-row">
-                                    <label>Page 5 (after "એહી સ્વજનશ્રી"):</label>
-                                    <input
-                                        type="number"
-                                        placeholder="X"
-                                        value={coordinates.page5.x}
-                                        onChange={(e) => setCoordinates({ ...coordinates, page5: { ...coordinates.page5, x: Number(e.target.value) } })}
-                                    />
-                                    <input
-                                        type="number"
-                                        placeholder="Y"
-                                        value={coordinates.page5.y}
-                                        onChange={(e) => setCoordinates({ ...coordinates, page5: { ...coordinates.page5, y: Number(e.target.value) } })}
-                                    />
+                                {/* Page 4 - Show for A, B, C, D, E, F, G */}
+                                {template && ['A', 'B', 'C', 'D', 'E', 'F', 'G'].includes(template) && (
+                                    <div className="coord-row">
+                                        <label>Page 4 (after "એહી સ્વજનશ્રી"):</label>
+                                        <input
+                                            type="number"
+                                            placeholder="X"
+                                            value={coordinates.page4.x}
+                                            onChange={(e) => setCoordinates({ ...coordinates, page4: { ...coordinates.page4, x: Number(e.target.value) } })}
+                                        />
+                                        <input
+                                            type="number"
+                                            placeholder="Y"
+                                            value={coordinates.page4.y}
+                                            onChange={(e) => setCoordinates({ ...coordinates, page4: { ...coordinates.page4, y: Number(e.target.value) } })}
+                                        />
+                                    </div>
+                                )}
+
+                                {/* Page 5 - Show only for A, B, C */}
+                                {template && ['A', 'B', 'C'].includes(template) && (
+                                    <div className="coord-row">
+                                        <label>Page 5 (after "એહી સ્વજનશ્રી"):</label>
+                                        <input
+                                            type="number"
+                                            placeholder="X"
+                                            value={coordinates.page5.x}
+                                            onChange={(e) => setCoordinates({ ...coordinates, page5: { ...coordinates.page5, x: Number(e.target.value) } })}
+                                        />
+                                        <input
+                                            type="number"
+                                            placeholder="Y"
+                                            value={coordinates.page5.y}
+                                            onChange={(e) => setCoordinates({ ...coordinates, page5: { ...coordinates.page5, y: Number(e.target.value) } })}
+                                        />
+                                    </div>
+                                )}
+
+                                <div className="preview-btn-container">
+                                    <button onClick={handlePreviewCoordinates} className="preview-btn">
+                                        Preview Template {template}
+                                    </button>
                                 </div>
-                            )}
-
-                            <button onClick={handlePreviewCoordinates} className="preview-btn">
-                                Preview Template {template}
-                            </button>
-                        </div>
-                </div>
-
-                <hr />
-
-                {/* File Upload Section */}
-                <div className="file-input-wrapper">
-                    <input
-                        type="file"
-                        accept=".xlsx, .xls"
-                        onChange={handleFileChange}
-                        className="file-input"
-                    />
-                </div>
-
-                {loading && <p className="status-message">Loading Excel file...</p>}
-
-                {previewData.length > 0 && (
-                    <div className="preview-section">
-                        <h3>Preview ({previewData.length} guests)</h3>
-                        <div className="table-wrapper">
-                            <table className="preview-table">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {previewData.map((guest, index) => (
-                                        <tr key={index}>
-                                            <td>{guest.ID}</td>
-                                            <td>{guest.Name}</td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
                         </div>
                     </div>
-                )}
 
-                <div className="actions">
-                    <button
-                        onClick={handleGenerate}
-                        disabled={generating || previewData.length === 0}
-                        className="primary-btn"
-                    >
-                        {generating ? `Generating... (${progress.current}/${progress.total})` : `Generate with Template ${template}`}
-                    </button>
-                </div>
+                    <hr />
 
+                    {/* File Upload Section */}
+                    <div className="file-input-wrapper">
+                        <input
+                            type="file"
+                            accept=".xlsx, .xls"
+                            onChange={handleFileChange}
+                            className="file-input"
+                        />
+                    </div>
+
+                    {loading && <p className="status-message">Loading Excel file...</p>}
+
+                    {previewData.length > 0 && (
+                        <div className="preview-section">
+                            <h3>Preview ({previewData.length} guests)</h3>
+                            <div className="table-wrapper">
+                                <table className="preview-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {previewData.map((guest, index) => (
+                                            <tr key={index}>
+                                                <td>{guest.ID}</td>
+                                                <td>{guest.Name}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    )}
+
+                    <div className="actions">
+                        <button
+                            onClick={handleGenerate}
+                            disabled={generating || previewData.length === 0}
+                            className="primary-btn"
+                        >
+                            {generating ? `Generating... (${progress.current}/${progress.total})` : `Generate with Template ${template}`}
+                        </button>
+                    </div>
+                </div> {/* End of form-main-content */}
                 {message && <p className={`status-message ${message.includes('Error') ? 'error' : 'success'}`}>{message}</p>}
             </div>
         </div>
