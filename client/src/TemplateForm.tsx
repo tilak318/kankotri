@@ -35,6 +35,7 @@ function TemplateForm() {
     const [generating, setGenerating] = useState(false);
     const [message, setMessage] = useState('');
     const [progress, setProgress] = useState({ current: 0, total: 0 });
+    const [selectedFileName, setSelectedFileName] = useState<string | null>(null);
     const [coordinates, setCoordinates] = useState<Coordinates>(
         template ? DEFAULT_COORDS[template] : DEFAULT_COORDS['C']
     );
@@ -223,15 +224,15 @@ function TemplateForm() {
 
                     <hr />
 
-                    {/* File Upload Section */}
-                    <div className="file-input-wrapper">
-                        <input
-                            type="file"
-                            accept=".xlsx, .xls"
-                            onChange={handleFileChange}
-                            className="file-input"
-                        />
-                    </div>
+                {/* File Upload Section */}
+                <div className="file-input-wrapper">
+                    <input
+                        type="file"
+                        accept=".xlsx, .xls"
+                        onChange={handleFileChange}
+                        className="file-input"
+                    />
+                </div>
 
                     {loading && <p className="status-message">Loading Excel file...</p>}
 

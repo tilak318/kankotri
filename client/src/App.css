@@ -355,12 +355,11 @@ body {
   gap: 0.5rem; /* Space between button and text */
 }
 
-.file-input:hover {
-  border-color: var(--primary);
-  background: #3b4a5f;
+.file-input input[type="file"] {
+  display: none; /* Hide the native file input */
 }
 
-.file-input::file-selector-button {
+.file-input span {
   background: var(--primary);
   color: white;
   border: none;
@@ -368,19 +367,25 @@ body {
   border-radius: 6px;
   cursor: pointer;
   font-weight: 600;
-  margin-right: 0; /* Remove margin-right to allow stacking */
-  display: block;
-  margin-bottom: 0.5rem; /* Add space below button */
-  width: 100%;
   transition: background 0.2s ease;
+  white-space: nowrap; /* Prevent text from wrapping */
 }
 
-.file-input::file-input-text {
-  display: none;
-}
-
-.file-input::file-selector-button:hover {
+.file-input span:hover {
   background: var(--primary-dark);
+}
+
+.selected-file-name {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  text-align: center;
+  word-break: break-all;
+}
+
+.file-input:hover {
+  border-color: var(--primary);
+  background: #3b4a5f;
 }
 
 .preview-section {
