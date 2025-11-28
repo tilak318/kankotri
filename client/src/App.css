@@ -129,48 +129,6 @@ body {
   font-weight: 500;
   position: relative;
   z-index: 1;
-}
-
-.template-card.active .template-info {
-  color: var(--primary-light);
-}
-
-/* Card */
-.card {
-  background: var(--bg-card);
-  border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  padding: 2.5rem;
-  width: 100%;
-  border: 1px solid var(--border);
-  backdrop-filter: blur(10px);
-  margin-top: 2rem;
-}
-
-.card-title {
-  color: var(--text-primary);
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-hr {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 2rem 0;
-  opacity: 0.5;
-}
-
-.coordinate-setup h3 {
-  color: var(--text-primary);
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
   user-select: none;
   display: flex;
   align-items: center;
