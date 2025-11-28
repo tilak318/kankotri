@@ -65,7 +65,7 @@ body {
   gap: 1.5rem;
   margin-bottom: 3rem;
   width: 100%;
-  max-width: 900px; /* Adjusted max-width for 3 columns */
+  max-width: 1200px; /* Adjusted max-width for wider cards */
 }
 
 .template-card {
@@ -139,15 +139,14 @@ body {
   user-select: none;
   margin-top: 1rem;
   display: flex; /* Make it a flex container */
-  flex-wrap: wrap; /* Allow items to wrap */
   justify-content: center; /* Center items horizontally */
-  gap: 1rem; /* Space between items */
+  gap: 0.5rem; /* Space between items, reduced for single line */
 }
 
 .template-gujarati-note p {
   margin-bottom: 0;
-  flex: 1 1 calc(50% - 1rem); /* Two items per row with gap */
-  max-width: calc(50% - 1rem);
+  flex: none; /* Allow items to stay on one line */
+  max-width: none; /* Allow items to take necessary width */
   text-align: center;
 }
 
@@ -432,7 +431,7 @@ body {
     grid-template-columns: 1fr; /* Single column on very small screens */
   }
   .template-gujarati-note p {
-    flex: 1 1 100%; /* Single item per row on very small screens */
-    max-width: 100%;
+    flex: none; /* Keep single line on very small screens */
+    max-width: none;
   }
 }
