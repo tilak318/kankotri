@@ -190,13 +190,17 @@ app.post('/generate-pdfs', async (req, res) => {
 					coords.push({ pageIndex: 4, x: coordinates.page5.x, y: coordinates.page5.y });
 				}
 			} else {
-				// Default coordinates
-				coords.push({ pageIndex: 0, x: 115, y: 375 });
-				if (['A', 'B', 'C', 'D', 'E', 'F', 'G'].includes(template)) {
-					coords.push({ pageIndex: 3, x: 240, y: 235 });
+				// Default coordinates based on template
+				coords.push({ pageIndex: 0, x: 100, y: 375 }); // Page 1 - same for all
+
+				if (['A', 'B', 'C', 'D', 'E'].includes(template)) {
+					coords.push({ pageIndex: 3, x: 205, y: 550 }); // Page 4 for A,B,C,D,E
+				} else if (['F', 'G'].includes(template)) {
+					coords.push({ pageIndex: 3, x: 175, y: 550 }); // Page 4 for F,G
 				}
+
 				if (['A', 'B', 'C'].includes(template)) {
-					coords.push({ pageIndex: 4, x: 240, y: 235 });
+					coords.push({ pageIndex: 4, x: 175, y: 550 }); // Page 5 for A,B,C
 				}
 			}
 

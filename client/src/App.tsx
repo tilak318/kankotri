@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 interface GuestData {
@@ -12,6 +12,19 @@ interface Coordinates {
   page5: { x: number; y: number };
 }
 
+// Default coordinates for each template
+const DEFAULT_COORDS: Record<string, Coordinates> = {
+  A: { page1: { x: 100, y: 375 }, page4: { x: 205, y: 550 }, page5: { x: 175, y: 550 } },
+  B: { page1: { x: 100, y: 375 }, page4: { x: 205, y: 550 }, page5: { x: 175, y: 550 } },
+  C: { page1: { x: 100, y: 375 }, page4: { x: 205, y: 550 }, page5: { x: 175, y: 550 } },
+  D: { page1: { x: 100, y: 375 }, page4: { x: 205, y: 550 }, page5: { x: 0, y: 0 } },
+  E: { page1: { x: 100, y: 375 }, page4: { x: 205, y: 550 }, page5: { x: 0, y: 0 } },
+  F: { page1: { x: 100, y: 375 }, page4: { x: 175, y: 550 }, page5: { x: 0, y: 0 } },
+  G: { page1: { x: 100, y: 375 }, page4: { x: 175, y: 550 }, page5: { x: 0, y: 0 } },
+  H: { page1: { x: 100, y: 375 }, page4: { x: 0, y: 0 }, page5: { x: 0, y: 0 } },
+  I: { page1: { x: 100, y: 375 }, page4: { x: 0, y: 0 }, page5: { x: 0, y: 0 } },
+};
+
 function App() {
   const [previewData, setPreviewData] = useState<GuestData[]>([]);
   const [loading, setLoading] = useState(false);
@@ -23,13 +36,14 @@ function App() {
   const [selectedTemplate, setSelectedTemplate] = useState('C');
 
   // Coordinate state
-  const [coordinates, setCoordinates] = useState<Coordinates>({
-    page1: { x: 115, y: 375 },
-    page4: { x: 240, y: 235 },
-    page5: { x: 240, y: 235 }
-  });
+  const [coordinates, setCoordinates] = useState<Coordinates>(DEFAULT_COORDS['C']);
 
   const [showCoordinateSetup, setShowCoordinateSetup] = useState(true);
+
+  // Update coordinates when template changes
+  useEffect(() => {
+    setCoordinates(DEFAULT_COORDS[selectedTemplate]);
+  }, [selectedTemplate]);
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
