@@ -26,6 +26,19 @@ const DEFAULT_COORDS: Record<string, Coordinates> = {
     I: { page1: { x: 100, y: 375 }, page4: { x: 0, y: 0 }, page5: { x: 0, y: 0 } },
 };
 
+// Template tags/notes
+const gujaratiNotes: { [key: string]: string[] } = {
+    A: ["Sangeet SARVO", "Pruthvi SARVO", "Meet SARVO"],
+    B: ["Sangeet SAJODE", "Pruthvi SAJODE", "Meet SAJODE"],
+    C: ["Sangeet SARVO", "Pruthvi SAJODE", "Meet SAJODE"],
+    D: ["Sangeet SARVO", "Pruthvi SARVO"],
+    E: ["Sangeet SARVO", "Pruthvi SAJODE"],
+    F: ["Sangeet SARVO", "Meet SARVO"],
+    G: ["Sangeet SARVO", "Meet SAJODE"],
+    H: ["Sangeet SARVO"],
+    I: ["Sangeet SAJODE"],
+};
+
 function TemplateForm() {
     const { template } = useParams<{ template: string }>();
     const navigate = useNavigate();
@@ -39,6 +52,30 @@ function TemplateForm() {
     const [coordinates, setCoordinates] = useState<Coordinates>(
         template ? DEFAULT_COORDS[template] : DEFAULT_COORDS['C']
     );
+
+    // Helper function to render note with color
+    const renderNoteWithColor = (note: string) => {
+        const regex = /(SARVO|SAJODE)$/;
+        const match = note.match(regex);
+        let name = note;
+        let keyword = '';
+
+        if (match) {
+            name = note.substring(0, match.index).trim();
+            keyword = match[0];
+        }
+
+        return (
+            <div className="note-item" key={note}>
+                <span className="note-name">{name}</span>
+                {keyword && (
+                    <span className={keyword === "SARVO" ? "sarvo-red" : "sajode-green"}>
+                        {keyword}
+                    </span>
+                )}
+            </div>
+        );
+    };
 
     const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
@@ -152,7 +189,14 @@ function TemplateForm() {
 
     return (
         <div className="app-container">
-            <h2 className="card-title">Template {template} Configuration</h2>
+            <div className="title-with-tags">
+                <h2 className="card-title">Template {template} Configuration</h2>
+                <div className="template-tags-inline">
+                    {template && gujaratiNotes[template] &&
+                        gujaratiNotes[template].map((note) => renderNoteWithColor(note))
+                    }
+                </div>
+            </div>
 
             <div className="two-column-layout">
                 {/* Left Column - Coordinate Setup */}
