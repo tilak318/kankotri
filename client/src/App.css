@@ -336,6 +336,7 @@ body {
 .file-input-wrapper {
   margin-bottom: 0; /* Removed margin-bottom */
   display: flex;
+  justify-content: center;
 }
 
 .file-input {
@@ -370,7 +371,12 @@ body {
   margin-right: 0; /* Remove margin-right to allow stacking */
   display: block;
   margin-bottom: 0.5rem; /* Add space below button */
+  width: 100%;
   transition: background 0.2s ease;
+}
+
+.file-input::file-input-text {
+  display: none;
 }
 
 .file-input::file-selector-button:hover {
