@@ -38,7 +38,6 @@ function TemplateForm() {
     const [coordinates, setCoordinates] = useState<Coordinates>(
         template ? DEFAULT_COORDS[template] : DEFAULT_COORDS['C']
     );
-    const [showCoordinateSetup, setShowCoordinateSetup] = useState(true);
 
     const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
@@ -161,12 +160,7 @@ function TemplateForm() {
 
                 {/* Coordinate Setup Section */}
                 <div className="coordinate-setup">
-                    <h3 onClick={() => setShowCoordinateSetup(!showCoordinateSetup)} style={{ cursor: 'pointer' }}>
-                        ⚙️ Coordinate Setup {showCoordinateSetup ? '▼' : '▶'}
-                    </h3>
-
-                    {showCoordinateSetup && (
-                        <div className="coordinate-inputs">
+                    <div className="coordinate-inputs">
                             {/* Page 1 - Always shown */}
                             <div className="coord-row">
                                 <label>Page 1 (after "શ્રી"):</label>
@@ -226,7 +220,6 @@ function TemplateForm() {
                                 Preview Template {template}
                             </button>
                         </div>
-                    )}
                 </div>
 
                 <hr />
