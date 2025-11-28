@@ -63,9 +63,68 @@ app.post('/preview-excel', upload.single('excelFile'), async (req, res) => {
 	}
 });
 
+// Preview coordinates endpoint - generates single test PDF
+app.post('/preview-coordinates', async (req, res) => {
+	const { coordinates, testName } = req.body;
+
+	if (!coordinates || !testName) {
+		return res.status(400).json({ error: 'Missing coordinates or test name' });
+	}
+
+	const templatePath = path.join(__dirname, 'templates', 'template1.pdf');
+	if (!fs.existsSync(templatePath)) {
+		return res.status(404).json({ error: 'Template PDF not found.' });
+	}
+
+	const fontPath = path.join(__dirname, 'fonts', 'NotoSansGujarati-Regular.ttf');
+	if (!fs.existsSync(fontPath)) {
+		return res.status(404).json({ error: 'Gujarati font not found.' });
+	}
+
+	try {
+		const templateBytes = fs.readFileSync(templatePath);
+		const fontBytes = fs.readFileSync(fontPath);
+
+		const pdfDoc = await PDFDocument.load(templateBytes);
+		pdfDoc.registerFontkit(fontkit);
+		const customFont = await pdfDoc.embedFont(fontBytes);
+
+		const pages = pdfDoc.getPages();
+
+		// Use coordinates from request
+		const coords = [
+			{ pageIndex: 0, x: coordinates.page1.x, y: coordinates.page1.y },
+			{ pageIndex: 3, x: coordinates.page4.x, y: coordinates.page4.y },
+			{ pageIndex: 4, x: coordinates.page5.x, y: coordinates.page5.y }
+		];
+
+		for (const coord of coords) {
+			if (pages[coord.pageIndex]) {
+				pages[coord.pageIndex].drawText(String(testName), {
+					x: coord.x,
+					y: coord.y,
+					size: 24,
+					font: customFont,
+					color: rgb(1, 0, 0), // RED COLOR
+				});
+			}
+		}
+
+		const pdfBytes = await pdfDoc.save();
+
+		res.set('Content-Type', 'application/pdf');
+		res.set('Content-Disposition', 'inline; filename=preview.pdf');
+		res.send(Buffer.from(pdfBytes));
+
+	} catch (error) {
+		console.error('Error generating preview:', error);
+		res.status(500).json({ error: 'Failed to generate preview', details: error.message });
+	}
+});
+
 // Generate PDFs endpoint
 app.post('/generate-pdfs', async (req, res) => {
-	const { guests } = req.body;
+	const { guests, coordinates } = req.body;
 
 	if (!guests || guests.length === 0) {
 		return res.status(400).json({ error: 'No guest data provided' });
@@ -105,12 +164,15 @@ app.post('/generate-pdfs', async (req, res) => {
 
 			const pages = pdfDoc.getPages();
 
-			// Coordinates for insertion (Page 1, 4, 5) -> Indices 0, 3, 4
-			// Updated based on actual PDF positions
-			const coords = [
-				{ pageIndex: 0, x: 130, y: 395 }, // Page 1 - after "શ્રી" on the line
-				{ pageIndex: 3, x: 240, y: 235 }, // Page 4 - after "એહી સ્વજનશ્રી" on the line
-				{ pageIndex: 4, x: 240, y: 235 }  // Page 5 - after "એહી સ્વજનશ્રી" on the line
+			// Use coordinates from request
+			const coords = coordinates ? [
+				{ pageIndex: 0, x: coordinates.page1.x, y: coordinates.page1.y },
+				{ pageIndex: 3, x: coordinates.page4.x, y: coordinates.page4.y },
+				{ pageIndex: 4, x: coordinates.page5.x, y: coordinates.page5.y }
+			] : [
+				{ pageIndex: 0, x: 115, y: 375 }, // Default Page 1
+				{ pageIndex: 3, x: 240, y: 235 }, // Default Page 4
+				{ pageIndex: 4, x: 240, y: 235 }  // Default Page 5
 			];
 
 			for (const coord of coords) {

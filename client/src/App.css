@@ -117,3 +117,65 @@
 .actions {
   margin-top: 20px;
 }
+
+.coordinate-setup {
+  margin-bottom: 20px;
+}
+
+.coordinate-setup h3 {
+  color: #646cff;
+  margin-bottom: 15px;
+  user-select: none;
+}
+
+.coordinate-inputs {
+  background-color: #1a1a1a;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.coord-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.coord-row label {
+  min-width: 200px;
+  color: #ccc;
+}
+
+.coord-row input {
+  width: 80px;
+  padding: 8px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background-color: #333;
+  color: white;
+  font-size: 14px;
+}
+
+.preview-btn {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.preview-btn:hover {
+  background-color: #45a049;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #444;
+  margin: 20px 0;
+}

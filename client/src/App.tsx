@@ -6,12 +6,27 @@ interface GuestData {
   Name: string;
 }
 
+interface Coordinates {
+  page1: { x: number; y: number };
+  page4: { x: number; y: number };
+  page5: { x: number; y: number };
+}
+
 function App() {
   const [previewData, setPreviewData] = useState<GuestData[]>([]);
   const [loading, setLoading] = useState(false);
   const [generating, setGenerating] = useState(false);
   const [message, setMessage] = useState('');
   const [progress, setProgress] = useState({ current: 0, total: 0 });
+
+  // Coordinate state
+  const [coordinates, setCoordinates] = useState<Coordinates>({
+    page1: { x: 115, y: 375 },
+    page4: { x: 240, y: 235 },
+    page5: { x: 240, y: 235 }
+  });
+
+  const [showCoordinateSetup, setShowCoordinateSetup] = useState(true);
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -47,6 +62,36 @@ function App() {
     }
   };
 
+  const handlePreviewCoordinates = async () => {
+    setMessage('Generating preview PDF...');
+
+    try {
+      const response = await fetch('http://localhost:6001/preview-coordinates', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          coordinates,
+          testName: 'જીવરાજભાઈ અમરશીભાઈ'
+        }),
+      });
+
+      if (response.ok) {
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        window.open(url);
+        setMessage('Preview PDF opened! Check the position and adjust if needed.');
+      } else {
+        const errorData = await response.json();
+        setMessage(`Error: ${errorData.error || 'Failed to generate preview'}`);
+      }
+    } catch (error) {
+      console.error(error);
+      setMessage('Error connecting to server.');
+    }
+  };
+
   const handleGenerate = async () => {
     if (previewData.length === 0) {
       setMessage('No data to generate PDFs.');
@@ -63,7 +108,10 @@ function App() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ guests: previewData }),
+        body: JSON.stringify({
+          guests: previewData,
+          coordinates
+        }),
       });
 
       if (response.ok) {
@@ -92,9 +140,75 @@ function App() {
   return (
     <div className="app-container">
       <h1>Guest Name PDF Generator</h1>
-      <p>Upload an Excel file with columns <b>ID</b> and <b>Name</b> to generate personalized PDFs.</p>
+      <p>Configure coordinates and generate personalized PDFs</p>
 
       <div className="card">
+        {/* Coordinate Setup Section */}
+        <div className="coordinate-setup">
+          <h3 onClick={() => setShowCoordinateSetup(!showCoordinateSetup)} style={{ cursor: 'pointer' }}>
+            ⚙️ Coordinate Setup {showCoordinateSetup ? '▼' : '▶'}
+          </h3>
+
+          {showCoordinateSetup && (
+            <div className="coordinate-inputs">
+              <div className="coord-row">
+                <label>Page 1 (after "શ્રી"):</label>
+                <input
+                  type="number"
+                  placeholder="X"
+                  value={coordinates.page1.x}
+                  onChange={(e) => setCoordinates({ ...coordinates, page1: { ...coordinates.page1, x: Number(e.target.value) } })}
+                />
+                <input
+                  type="number"
+                  placeholder="Y"
+                  value={coordinates.page1.y}
+                  onChange={(e) => setCoordinates({ ...coordinates, page1: { ...coordinates.page1, y: Number(e.target.value) } })}
+                />
+              </div>
+
+              <div className="coord-row">
+                <label>Page 4 (after "એહી સ્વજનશ્રી"):</label>
+                <input
+                  type="number"
+                  placeholder="X"
+                  value={coordinates.page4.x}
+                  onChange={(e) => setCoordinates({ ...coordinates, page4: { ...coordinates.page4, x: Number(e.target.value) } })}
+                />
+                <input
+                  type="number"
+                  placeholder="Y"
+                  value={coordinates.page4.y}
+                  onChange={(e) => setCoordinates({ ...coordinates, page4: { ...coordinates.page4, y: Number(e.target.value) } })}
+                />
+              </div>
+
+              <div className="coord-row">
+                <label>Page 5 (after "એહી સ્વજનશ્રી"):</label>
+                <input
+                  type="number"
+                  placeholder="X"
+                  value={coordinates.page5.x}
+                  onChange={(e) => setCoordinates({ ...coordinates, page5: { ...coordinates.page5, x: Number(e.target.value) } })}
+                />
+                <input
+                  type="number"
+                  placeholder="Y"
+                  value={coordinates.page5.y}
+                  onChange={(e) => setCoordinates({ ...coordinates, page5: { ...coordinates.page5, y: Number(e.target.value) } })}
+                />
+              </div>
+
+              <button onClick={handlePreviewCoordinates} className="preview-btn">
+                👁️ Preview with "જીવરાજભાઈ અમરશીભાઈ"
+              </button>
+            </div>
+          )}
+        </div>
+
+        <hr />
+
+        {/* File Upload Section */}
         <div className="file-input-wrapper">
           <input
             type="file"
