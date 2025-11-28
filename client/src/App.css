@@ -138,16 +138,39 @@ body {
   z-index: 1;
   user-select: none;
   margin-top: 1rem;
-  display: flex; /* Make it a flex container */
-  justify-content: center; /* Center items horizontally */
-  gap: 0.5rem; /* Space between items, reduced for single line */
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap for better spacing */
+  justify-content: center;
+  gap: 0; /* Remove gap from here as it's now on note-item */
 }
 
 .template-gujarati-note p {
-  margin-bottom: 0;
-  flex: none; /* Allow items to stay on one line */
-  max-width: none; /* Allow items to take necessary width */
-  text-align: center;
+  /* This selector is no longer needed as notes are now divs */
+  display: none;
+}
+
+.note-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem; /* Gap between key and value */
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  margin: 0.25rem; /* Space between note items */
+}
+
+.note-name {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.sarvo-red {
+  color: var(--error); /* Red color for SARVO */
+}
+
+.sajode-green {
+  color: var(--success); /* Green color for SAJODE */
 }
 
 .coordinate-setup h3:hover {
@@ -430,8 +453,8 @@ body {
   .template-grid {
     grid-template-columns: 1fr; /* Single column on very small screens */
   }
-  .template-gujarati-note p {
-    flex: none; /* Keep single line on very small screens */
-    max-width: none;
+  .note-item {
+    flex: 1 1 100%; /* Single item per row on very small screens */
+    max-width: 100%;
   }
 }

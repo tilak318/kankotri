@@ -20,6 +20,29 @@ function App() {
     navigate(`/template/${template}`);
   };
 
+  const renderNoteWithColor = (note: string) => {
+    const regex = /(SARVO|SAJODE)$/;
+    const match = note.match(regex);
+    let name = note;
+    let keyword = '';
+
+    if (match) {
+      name = note.substring(0, match.index).trim();
+      keyword = match[0];
+    }
+
+    return (
+      <div className="note-item">
+        <span className="note-name">{name}</span>
+        {keyword && (
+          <span className={keyword === "SARVO" ? "sarvo-red" : "sajode-green"}>
+            {keyword}
+          </span>
+        )}
+      </div>
+    );
+  };
+
   return (
     <div className="app-container">
       <h1>Invitation PDF Generator</h1>
@@ -35,7 +58,9 @@ function App() {
             <div className="template-letter">{template}</div>
             <div className="template-gujarati-note">
               {gujaratiNotes[template] &&
-                gujaratiNotes[template].map((note, index) => <p key={index}>{note}</p>)}
+                gujaratiNotes[template].map((note, index) => (
+                  <div key={index}>{renderNoteWithColor(note)}</div>
+                ))}
             </div>
           </div>
         ))}
