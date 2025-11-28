@@ -65,15 +65,15 @@ app.post('/preview-excel', upload.single('excelFile'), async (req, res) => {
 
 // Preview coordinates endpoint - generates single test PDF
 app.post('/preview-coordinates', async (req, res) => {
-	const { coordinates, testName } = req.body;
+	const { coordinates, testName, template = 'C' } = req.body;
 
 	if (!coordinates || !testName) {
 		return res.status(400).json({ error: 'Missing coordinates or test name' });
 	}
 
-	const templatePath = path.join(__dirname, 'templates', 'template1.pdf');
+	const templatePath = path.join(__dirname, 'templates', `template${template}.pdf`);
 	if (!fs.existsSync(templatePath)) {
-		return res.status(404).json({ error: 'Template PDF not found.' });
+		return res.status(404).json({ error: `Template ${template} PDF not found. Please add template${template}.pdf to the templates folder.` });
 	}
 
 	const fontPath = path.join(__dirname, 'fonts', 'NotoSansGujarati-Regular.ttf');
@@ -124,16 +124,16 @@ app.post('/preview-coordinates', async (req, res) => {
 
 // Generate PDFs endpoint
 app.post('/generate-pdfs', async (req, res) => {
-	const { guests, coordinates } = req.body;
+	const { guests, coordinates, template = 'C' } = req.body;
 
 	if (!guests || guests.length === 0) {
 		return res.status(400).json({ error: 'No guest data provided' });
 	}
 
 	// Check for template
-	const templatePath = path.join(__dirname, 'templates', 'template1.pdf');
+	const templatePath = path.join(__dirname, 'templates', `template${template}.pdf`);
 	if (!fs.existsSync(templatePath)) {
-		return res.status(404).json({ error: 'Template PDF (template1.pdf) not found.' });
+		return res.status(404).json({ error: `Template ${template} PDF not found. Please add template${template}.pdf to the templates folder.` });
 	}
 
 	// Check for Font
@@ -214,3 +214,4 @@ app.post('/generate-pdfs', async (req, res) => {
 app.listen(PORT, () => {
 	console.log(`Server running on port ${PORT}`);
 });
+

@@ -19,6 +19,9 @@ function App() {
   const [message, setMessage] = useState('');
   const [progress, setProgress] = useState({ current: 0, total: 0 });
 
+  // Template selection (A to I)
+  const [selectedTemplate, setSelectedTemplate] = useState('C');
+
   // Coordinate state
   const [coordinates, setCoordinates] = useState<Coordinates>({
     page1: { x: 115, y: 375 },
@@ -34,7 +37,6 @@ function App() {
       setMessage('');
       setPreviewData([]);
 
-      // Upload and preview
       setLoading(true);
       const formData = new FormData();
       formData.append('excelFile', selectedFile);
@@ -73,7 +75,8 @@ function App() {
         },
         body: JSON.stringify({
           coordinates,
-          testName: 'જીવરાજભાઈ અમરશીભાઈ'
+          testName: 'જીવરાજભાઈ અમરશીભાઈ',
+          template: selectedTemplate
         }),
       });
 
@@ -110,7 +113,8 @@ function App() {
         },
         body: JSON.stringify({
           guests: previewData,
-          coordinates
+          coordinates,
+          template: selectedTemplate
         }),
       });
 
@@ -140,13 +144,31 @@ function App() {
   return (
     <div className="app-container">
       <h1>Guest Name PDF Generator</h1>
-      <p>Configure coordinates and generate personalized PDFs</p>
+      <p>Configure template and coordinates, then generate personalized PDFs</p>
 
       <div className="card">
+        {/* Template Selection */}
+        <div className="template-selection">
+          <label>Select PDF Template:</label>
+          <select value={selectedTemplate} onChange={(e) => setSelectedTemplate(e.target.value)} className="template-select">
+            <option value="A">Template A</option>
+            <option value="B">Template B</option>
+            <option value="C">Template C</option>
+            <option value="D">Template D</option>
+            <option value="E">Template E</option>
+            <option value="F">Template F</option>
+            <option value="G">Template G</option>
+            <option value="H">Template H</option>
+            <option value="I">Template I</option>
+          </select>
+        </div>
+
+        <hr />
+
         {/* Coordinate Setup Section */}
         <div className="coordinate-setup">
           <h3 onClick={() => setShowCoordinateSetup(!showCoordinateSetup)} style={{ cursor: 'pointer' }}>
-            ⚙️ Coordinate Setup {showCoordinateSetup ? '▼' : '▶'}
+            ⚙️ Coordinate Setup for Template {selectedTemplate} {showCoordinateSetup ? '▼' : '▶'}
           </h3>
 
           {showCoordinateSetup && (
@@ -200,7 +222,7 @@ function App() {
               </div>
 
               <button onClick={handlePreviewCoordinates} className="preview-btn">
-                👁️ Preview with "જીવરાજભાઈ અમરશીભાઈ"
+                👁️ Preview Template {selectedTemplate} with "જીવરાજભાઈ અમરશીભાઈ"
               </button>
             </div>
           )}
@@ -250,7 +272,7 @@ function App() {
             disabled={generating || previewData.length === 0}
             className="primary-btn"
           >
-            {generating ? `Generating... (${progress.current}/${progress.total})` : 'Start Generation'}
+            {generating ? `Generating... (${progress.current}/${progress.total})` : `Generate with Template ${selectedTemplate}`}
           </button>
         </div>
 
@@ -261,3 +283,4 @@ function App() {
 }
 
 export default App
+
