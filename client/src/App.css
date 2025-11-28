@@ -166,11 +166,11 @@ body {
 }
 
 .sarvo-red {
-  color: var(--error); /* Red color for SARVO */
+  color: var(--success); /* Green color for SARVO (swapped) */
 }
 
 .sajode-green {
-  color: var(--success); /* Green color for SAJODE */
+  color: var(--error); /* Red color for SAJODE (swapped) */
 }
 
 .coordinate-setup h3:hover {
