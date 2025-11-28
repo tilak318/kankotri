@@ -91,12 +91,21 @@ app.post('/preview-coordinates', async (req, res) => {
 
 		const pages = pdfDoc.getPages();
 
-		// Use coordinates from request
-		const coords = [
-			{ pageIndex: 0, x: coordinates.page1.x, y: coordinates.page1.y },
-			{ pageIndex: 3, x: coordinates.page4.x, y: coordinates.page4.y },
-			{ pageIndex: 4, x: coordinates.page5.x, y: coordinates.page5.y }
-		];
+		// Determine which pages to edit based on template
+		const coords = [];
+
+		// All templates have Page 1
+		coords.push({ pageIndex: 0, x: coordinates.page1.x, y: coordinates.page1.y });
+
+		// A, B, C, D, E, F, G have Page 4
+		if (['A', 'B', 'C', 'D', 'E', 'F', 'G'].includes(template)) {
+			coords.push({ pageIndex: 3, x: coordinates.page4.x, y: coordinates.page4.y });
+		}
+
+		// Only A, B, C have Page 5
+		if (['A', 'B', 'C'].includes(template)) {
+			coords.push({ pageIndex: 4, x: coordinates.page5.x, y: coordinates.page5.y });
+		}
 
 		for (const coord of coords) {
 			if (pages[coord.pageIndex]) {
@@ -164,16 +173,32 @@ app.post('/generate-pdfs', async (req, res) => {
 
 			const pages = pdfDoc.getPages();
 
-			// Use coordinates from request
-			const coords = coordinates ? [
-				{ pageIndex: 0, x: coordinates.page1.x, y: coordinates.page1.y },
-				{ pageIndex: 3, x: coordinates.page4.x, y: coordinates.page4.y },
-				{ pageIndex: 4, x: coordinates.page5.x, y: coordinates.page5.y }
-			] : [
-				{ pageIndex: 0, x: 115, y: 375 }, // Default Page 1
-				{ pageIndex: 3, x: 240, y: 235 }, // Default Page 4
-				{ pageIndex: 4, x: 240, y: 235 }  // Default Page 5
-			];
+			// Determine which pages to edit based on template
+			const coords = [];
+
+			if (coordinates) {
+				// All templates have Page 1
+				coords.push({ pageIndex: 0, x: coordinates.page1.x, y: coordinates.page1.y });
+
+				// A, B, C, D, E, F, G have Page 4
+				if (['A', 'B', 'C', 'D', 'E', 'F', 'G'].includes(template)) {
+					coords.push({ pageIndex: 3, x: coordinates.page4.x, y: coordinates.page4.y });
+				}
+
+				// Only A, B, C have Page 5
+				if (['A', 'B', 'C'].includes(template)) {
+					coords.push({ pageIndex: 4, x: coordinates.page5.x, y: coordinates.page5.y });
+				}
+			} else {
+				// Default coordinates
+				coords.push({ pageIndex: 0, x: 115, y: 375 });
+				if (['A', 'B', 'C', 'D', 'E', 'F', 'G'].includes(template)) {
+					coords.push({ pageIndex: 3, x: 240, y: 235 });
+				}
+				if (['A', 'B', 'C'].includes(template)) {
+					coords.push({ pageIndex: 4, x: 240, y: 235 });
+				}
+			}
 
 			for (const coord of coords) {
 				if (pages[coord.pageIndex]) {
