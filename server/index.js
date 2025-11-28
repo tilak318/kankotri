@@ -103,7 +103,7 @@ app.post('/preview-coordinates', async (req, res) => {
 				pages[coord.pageIndex].drawText(String(testName), {
 					x: coord.x,
 					y: coord.y,
-					size: 24,
+					size: 18,
 					font: customFont,
 					color: rgb(1, 0, 0), // RED COLOR
 				});
@@ -180,7 +180,7 @@ app.post('/generate-pdfs', async (req, res) => {
 					pages[coord.pageIndex].drawText(String(Name), {
 						x: coord.x,
 						y: coord.y,
-						size: 24,
+						size: 18,
 						font: customFont,
 						color: rgb(1, 0, 0), // RED COLOR
 					});
