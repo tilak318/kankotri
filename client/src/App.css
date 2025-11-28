@@ -65,7 +65,7 @@ body {
   gap: 1.5rem;
   margin-bottom: 3rem;
   width: 100%;
-  max-width: 900px;
+  max-width: 1200px; /* Increased max-width */
 }
 
 .template-card {
@@ -78,6 +78,7 @@ body {
   text-align: center;
   position: relative;
   overflow: hidden;
+  width: 100%; /* Ensure cards take full width in their grid column */
 }
 
 .template-card::before {
@@ -126,18 +127,25 @@ body {
 }
 
 .template-info {
+  display: none; /* Removed as per user request */
+}
+
+.template-gujarati-note {
   color: var(--text-secondary);
   font-size: 0.85rem;
   font-weight: 500;
   position: relative;
   z-index: 1;
   user-select: none;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem;
-  border-radius: 10px;
-  transition: background 0.2s ease;
+  margin-top: 1rem;
+}
+
+.template-gujarati-note p {
+  margin-bottom: 0.2rem;
+}
+
+.template-gujarati-note p:last-child {
+  margin-bottom: 0;
 }
 
 .coordinate-setup h3:hover {

@@ -1,6 +1,18 @@
 import { useNavigate } from 'react-router-dom'
 import './App.css'
 
+const gujaratiNotes: { [key: string]: string[] } = {
+  A: ["Sangeet SARVO", "Pruthvi SARVO", "Meet SARVO"],
+  B: ["Sangeet SAJODE", "Pruthvi SAJODE", "Meet SAJODE"],
+  C: ["Sangeet SARVO", "Pruthvi SAJODE", "Meet SAJODE"],
+  D: ["Sangeet SARVO", "Pruthvi SARVO"],
+  E: ["Sangeet SARVO", "Pruthvi SAJODE"],
+  F: ["Sangeet SARVO", "Meet SARVO"],
+  G: ["Sangeet SARVO", "Meet SAJODE"],
+  H: ["Sangeet SARVO"],
+  I: ["Sangeet SAJODE"],
+};
+
 function App() {
   const navigate = useNavigate();
 
@@ -21,10 +33,9 @@ function App() {
             onClick={() => handleTemplateClick(template)}
           >
             <div className="template-letter">{template}</div>
-            <div className="template-info">
-              {['A', 'B', 'C'].includes(template) && <span>Pages: 1, 4, 5</span>}
-              {['D', 'E', 'F', 'G'].includes(template) && <span>Pages: 1, 4</span>}
-              {['H', 'I'].includes(template) && <span>Page: 1</span>}
+            <div className="template-gujarati-note">
+              {gujaratiNotes[template] &&
+                gujaratiNotes[template].map((note, index) => <p key={index}>{note}</p>)}
             </div>
           </div>
         ))}
