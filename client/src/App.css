@@ -349,6 +349,10 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
   font-size: 0.95rem;
+  display: flex;
+  flex-direction: column; /* Stack button and text vertically */
+  align-items: center; /* Center items horizontally within the input */
+  gap: 0.5rem; /* Space between button and text */
 }
 
 .file-input:hover {
@@ -364,7 +368,7 @@ body {
   border-radius: 6px;
   cursor: pointer;
   font-weight: 600;
-  margin-right: 12px;
+  margin-right: 0; /* Remove margin-right to allow stacking */
   transition: background 0.2s ease;
 }
 
