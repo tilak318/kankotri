@@ -8,6 +8,7 @@
     "adm-zip": "^0.5.16",
     "cors": "^2.8.5",
     "express": "^5.1.0",
+    "harfbuzzjs": "^0.4.13",
     "multer": "^2.0.2",
     "pdf-lib": "^1.17.1",
     "regenerator-runtime": "^0.14.1",
