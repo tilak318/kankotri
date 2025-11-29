@@ -87,7 +87,7 @@ app.post('/preview-coordinates', async (req, res) => {
 
 		const pdfDoc = await PDFDocument.load(templateBytes);
 		pdfDoc.registerFontkit(fontkit);
-		const customFont = await pdfDoc.embedFont(fontBytes);
+		const customFont = await pdfDoc.embedFont(fontBytes, { subset: true });
 
 		const pages = pdfDoc.getPages();
 
@@ -167,9 +167,9 @@ app.post('/generate-pdfs', async (req, res) => {
 
 			const pdfDoc = await PDFDocument.load(templateBytes);
 
-			// Register fontkit and embed Gujarati font
+			// Register fontkit and embed Gujarati font with subset
 			pdfDoc.registerFontkit(fontkit);
-			const customFont = await pdfDoc.embedFont(fontBytes);
+			const customFont = await pdfDoc.embedFont(fontBytes, { subset: true });
 
 			const pages = pdfDoc.getPages();
 
@@ -243,7 +243,3 @@ app.post('/generate-pdfs', async (req, res) => {
 app.listen(PORT, () => {
 	console.log(`Server running on port ${PORT}`);
 });
-
-
-
-
