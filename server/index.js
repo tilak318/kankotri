@@ -97,8 +97,8 @@ app.post('/preview-coordinates', async (req, res) => {
 		// All templates have Page 1
 		coords.push({ pageIndex: 0, x: coordinates.page1.x, y: coordinates.page1.y });
 
-		// A, B, C, D, E, F, G have Page 4
-		if (['A', 'B', 'C', 'D', 'E', 'F', 'G'].includes(template)) {
+		// A, B, C, D, E, F, G, J have Page 4
+		if (['A', 'B', 'C', 'D', 'E', 'F', 'G', 'J'].includes(template)) {
 			coords.push({ pageIndex: 3, x: coordinates.page4.x, y: coordinates.page4.y });
 		}
 
@@ -180,8 +180,8 @@ app.post('/generate-pdfs', async (req, res) => {
 				// All templates have Page 1
 				coords.push({ pageIndex: 0, x: coordinates.page1.x, y: coordinates.page1.y });
 
-				// A, B, C, D, E, F, G have Page 4
-				if (['A', 'B', 'C', 'D', 'E', 'F', 'G'].includes(template)) {
+				// A, B, C, D, E, F, G, J have Page 4
+				if (['A', 'B', 'C', 'D', 'E', 'F', 'G', 'J'].includes(template)) {
 					coords.push({ pageIndex: 3, x: coordinates.page4.x, y: coordinates.page4.y });
 				}
 
@@ -193,7 +193,7 @@ app.post('/generate-pdfs', async (req, res) => {
 				// Default coordinates based on template
 				coords.push({ pageIndex: 0, x: 100, y: 375 }); // Page 1 - same for all
 
-				if (['A', 'B', 'C', 'D', 'E'].includes(template)) {
+				if (['A', 'B', 'C', 'D', 'E', 'J'].includes(template)) {
 					coords.push({ pageIndex: 3, x: 205, y: 550 }); // Page 4 for A,B,C,D,E
 				} else if (['F', 'G'].includes(template)) {
 					coords.push({ pageIndex: 3, x: 175, y: 550 }); // Page 4 for F,G

@@ -24,6 +24,7 @@ const DEFAULT_COORDS: Record<string, Coordinates> = {
     G: { page1: { x: 100, y: 375 }, page4: { x: 175, y: 550 }, page5: { x: 0, y: 0 } },
     H: { page1: { x: 100, y: 375 }, page4: { x: 0, y: 0 }, page5: { x: 0, y: 0 } },
     I: { page1: { x: 100, y: 375 }, page4: { x: 0, y: 0 }, page5: { x: 0, y: 0 } },
+    J: { page1: { x: 100, y: 375 }, page4: { x: 205, y: 550 }, page5: { x: 0, y: 0 } },
 };
 
 // Template tags/notes
@@ -37,6 +38,7 @@ const gujaratiNotes: { [key: string]: string[] } = {
     G: ["Sangeet SARVO", "Meet SAJODE"],
     H: ["Sangeet SARVO"],
     I: ["Sangeet SAJODE"],
+    J: ["Sangeet SARVO", "Pruthvi SAJODE"],
 };
 
 function TemplateForm() {
@@ -220,8 +222,8 @@ function TemplateForm() {
                             />
                         </div>
 
-                        {/* Page 4 - Show for A, B, C, D, E, F, G */}
-                        {template && ['A', 'B', 'C', 'D', 'E', 'F', 'G'].includes(template) && (
+                        {/* Page 4 - Show for A, B, C, D, E, F, G, J */}
+                        {template && ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'J'].includes(template) && (
                             <div className="coord-row">
                                 <label>Page 4 (after "એહી સ્વજનશ્રી"):</label>
                                 <input
