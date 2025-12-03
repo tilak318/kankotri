@@ -109,10 +109,12 @@ app.post('/preview-coordinates', async (req, res) => {
 
 		for (const coord of coords) {
 			if (pages[coord.pageIndex]) {
+				// Use larger font size for K and L templates
+				const fontSize = ['K', 'L'].includes(template) ? 24 : 16;
 				pages[coord.pageIndex].drawText(String(testName), {
 					x: coord.x,
 					y: coord.y,
-					size: 16,
+					size: fontSize,
 					font: customFont,
 					color: rgb(1, 0, 0), // RED COLOR
 				});
@@ -206,10 +208,12 @@ app.post('/generate-pdfs', async (req, res) => {
 
 			for (const coord of coords) {
 				if (pages[coord.pageIndex]) {
+					// Use larger font size for K and L templates
+					const fontSize = ['K', 'L'].includes(template) ? 24 : 16;
 					pages[coord.pageIndex].drawText(String(Name), {
 						x: coord.x,
 						y: coord.y,
-						size: 16,
+						size: fontSize,
 						font: customFont,
 						color: rgb(1, 0, 0), // RED COLOR
 					});
