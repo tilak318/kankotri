@@ -11,7 +11,9 @@ const gujaratiNotes: { [key: string]: string[] } = {
   G: ["Sangeet SARVO", "Meet SAJODE"],
   H: ["Sangeet SARVO"],
   I: ["Sangeet SAJODE"],
-  J: ["Sangeet SARVO", "Pruthvi SAJODE"],
+  J: ["Sangeet SAJODE", "Pruthvi SAJODE"],
+  K: ["Mameru Pruthvi SARVO"],
+  L: ["Mameru Pruthvi SAJODE"],
 };
 
 function App() {
@@ -50,7 +52,7 @@ function App() {
 
       {/* Template Cards Grid */}
       <div className="template-grid">
-        {['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'].map((template) => (
+        {['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'].map((template) => (
           <div
             key={template}
             className="template-card"

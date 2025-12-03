@@ -24,7 +24,9 @@ const DEFAULT_COORDS: Record<string, Coordinates> = {
     G: { page1: { x: 100, y: 375 }, page4: { x: 175, y: 550 }, page5: { x: 0, y: 0 } },
     H: { page1: { x: 100, y: 375 }, page4: { x: 0, y: 0 }, page5: { x: 0, y: 0 } },
     I: { page1: { x: 100, y: 375 }, page4: { x: 0, y: 0 }, page5: { x: 0, y: 0 } },
-    J: { page1: { x: 100, y: 375 }, page4: { x: 205, y: 550 }, page5: { x: 0, y: 0 } },
+    J: { page1: { x: 110, y: 414 }, page4: { x: 235, y: 607 }, page5: { x: 0, y: 0 } },
+    K: { page1: { x: 210, y: 1080 }, page4: { x: 0, y: 0 }, page5: { x: 0, y: 0 } },
+    L: { page1: { x: 210, y: 1080 }, page4: { x: 0, y: 0 }, page5: { x: 0, y: 0 } },
 };
 
 // Template tags/notes
@@ -38,7 +40,9 @@ const gujaratiNotes: { [key: string]: string[] } = {
     G: ["Sangeet SARVO", "Meet SAJODE"],
     H: ["Sangeet SARVO"],
     I: ["Sangeet SAJODE"],
-    J: ["Sangeet SARVO", "Pruthvi SAJODE"],
+    J: ["Sangeet SAJODE", "Pruthvi SAJODE"],
+    K: ["Mameru Pruthvi SARVO"],
+    L: ["Mameru Pruthvi SAJODE"],
 };
 
 function TemplateForm() {
